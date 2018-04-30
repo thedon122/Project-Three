@@ -1,26 +1,38 @@
 const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
-const MainActivities = new Schema({
-    Name: String,
-    Duration: String,
-    Category: String
+const activitySchema = new Schema({
+    name: {type: String,
+        required: true},
+    duration: {type: String,
+        required: true},
+    category: String,
+    imgUrl: {type: String, default: ""}
 })
-const userActivities = new Schema({
-    Name: String,
-    Duration: String,
-    Category: String
+const eventSchema = new Schema({
+    name: {type: String,
+        required: true},
+    length: {type: String,
+        required: true},
+    type: String,
+    location: String,
+    date: String,
+    imgUrl: {type: String, default: ""},
+    activity: [activitySchema]
 })
-const UserSchema = new Schema({
-    lastName: String,
+const userSchema = new Schema({
+    lastName: {type: String,
+        required: true},
     firstName: String,
     favorite: String,
-    imgUrl: String,
-    activities: []
+    imgUrl: {type: String, default: ""},
+    event: [eventSchema]
 })
 
-const Creature = mongoose.model('Creature', CreatureSchema)
+const User = mongoose.model('User', UserSchema)
+const Event = mongoose.model('User', eventSchema)
+const Activity = mongoose.model('Activity', activitySchema)
 
 module.exports = {
-    Creature
+    User, Event, Activity
 }
