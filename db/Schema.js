@@ -23,7 +23,8 @@ const eventSchema = new Schema({
 const userSchema = new Schema({
     lastName: {type: String,
         required: true},
-    firstName: String,
+    firstName: {type: String,
+        required: true},
     favorite: String,
     imgUrl: {type: String, default: ""},
     event: [eventSchema]
