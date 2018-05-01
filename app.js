@@ -17,10 +17,12 @@ db.on('error', err => {
 db.on('open', () => {
   console.log('Connected to MongoDB')
 })
-app.use(express.static(`${__dirname}/client/build`))
 
 app.use(logger('dev'))
 app.use(bodyParser.json())
+app.use(express.static(`${__dirname}/client/build`))
+const userRoutes = require('./controllers/usersController')
+app.use('/api/users', userRoutes)
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/client/build/index.html')

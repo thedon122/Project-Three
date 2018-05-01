@@ -10,23 +10,26 @@ class HomePage extends Component {
         showMainImg: true
     }
     toggleShowNewForm = () => {
-        this.setState({showNewForm: !this.state.showNewForm})
-      }
-      toggleShowMainImg = () => {
-          this.setState({showMainImg: !this.state.showMainImg})
-      }
+        this.setState({ showNewForm: !this.state.showNewForm })
+    }
+    toggleShowMainImg = () => {
+        this.setState({ showMainImg: !this.state.showMainImg })
+    }
     render() {
         return (
             <div>
-                <div class = 'Button'>
-                
+                <div class='Button'>
+                    <button onClick ={this.toggleShowNewForm.toggleShowMainImg}>Create New User
+                    </button>
+                    {this.state.showNewForm ?<NewUser/>: null}
                 </div>
-                <div class = 'Button'><button>
-                <Link to ='/existing'>Existing User</Link>
+                
+                <div class='Button'><button>
+                    <Link to='/existing'>Existing User</Link>
                 </button>
                 </div>
-                <div class = 'mainImg'>
-                <img src= '/Users/donovan/GA/Project-Three/images/paximages.jpeg'/>
+                <div class='mainImg'>
+                    <img src='/Users/donovan/GA/Project-Three/images/paximages.jpeg' />
                 </div>
             </div>
         )
