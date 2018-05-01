@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const User = require('../db/schema.js')
+const User = require('../models/user.js')
 
 router.get('/', (req, res) => {
   // Index Route
@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
 })
 // Create Route
 router.post('/', (req, res) => {
-  console.log('response from server')
+  console.log('Hitting POST route from server')
   const newUser = req.body
   User.create(newUser)
     .then((user) => {
@@ -60,3 +60,5 @@ router.delete('/:id', (req, res) => {
     res.status(500).json(err)
   })
 })
+
+module.exports = router

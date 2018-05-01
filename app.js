@@ -21,6 +21,7 @@ db.on('open', () => {
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(express.static(`${__dirname}/client/build`))
+
 const userRoutes = require('./controllers/usersController')
 app.use('/api/users', userRoutes)
 

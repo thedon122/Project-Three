@@ -30,10 +30,6 @@ const userSchema = new Schema({
     event: [eventSchema]
 })
 
-const User = mongoose.model('User', userSchema)
-const Event = mongoose.model('Event', eventSchema)
-const Activity = mongoose.model('Activity', activitySchema)
-
 module.exports = {
-    User, Event, Activity
+    userSchema, eventSchema, activitySchema
 }
