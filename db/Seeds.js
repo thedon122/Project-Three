@@ -1,10 +1,6 @@
-import { mongo } from 'mongoose';
-
 require('dotenv').config()
 const mongoose = require('mongoose')
 const { User, Event, Activity } = require('./schema')
-
-
 mongoose.Promise = global.Promise
 mongoose.connect(process.env.MONGODB_URI)
 
@@ -24,7 +20,9 @@ const mary = new User({
     imgUrl: '/Users/donovan/GA/Project-Three/cosplayImg.jpeg',
     event: [momocon]
 })
-User.remove({})
-    .then(() => console.log('Successful Save'))
-    .then(() => mongoose.connection.close())
+User.remove()
+    .then(() => console.log('old users removed'))
     .then(() => mary.save())
+    .then(() => console.log('Successful Save'))
+    .then(() => db.close())
+
