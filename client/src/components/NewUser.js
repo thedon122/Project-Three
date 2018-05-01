@@ -6,7 +6,7 @@ class NewUser extends Component {
         lastName: '',
         firstName: '',
         favorite: '',
-        imgUrl: '',
+        imgUrl: ''
     }
 
     handleChange = (event) => {
@@ -24,31 +24,34 @@ class NewUser extends Component {
             favorite: this.state.favorite,
             imgUrl: this.state.imgUrl,
         }
-        axios.post('/api/users')
+        axios.post('/api/users', {payload})
+        .then((res) => {
+            console.log("RESPONSE FROM NEW User", res.data)
+        })
     }
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
                 <div>
                     <label htmlFor="lastName">Last Name: </label>
-                    <input onChange={this.handleChange} type="text" name="name" value={this.state.lastName} />
+                    <input onChange={this.handleChange} type="text" name="lastName"  />
                 </div>
                 <div>
                     <label htmlFor="firstName">First Name: </label>
-                    <input onChange={this.handleChange} type="text" name="name" value={this.state.firstName} />
+                    <input onChange={this.handleChange} type="text" name="firstName"  />
                 </div>
                 <div>
                     <label htmlFor="favorite">Favorite: </label>
-                    <input onChange={this.handleChange} type="text" name="name" value={this.state.favorite} />
+                    <input onChange={this.handleChange} type="text" name="favorite"  />
                 </div>
                 <div>
                     <label htmlFor="imgUrl">imgUrl: </label>
-                    <input onChange={this.handleChange} type="text" name="name" value={this.state.imgUrl} />
+                    <input onChange={this.handleChange} type="text" name="imgUrl"  />
                 </div>
-               
-                    <div>
-                        <button>Submit</button>
-                        </div>
+
+                <div>
+                    <button type="submit" value="Submit">Submit</button>
+                </div>
 
             </form>
         )

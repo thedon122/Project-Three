@@ -24,9 +24,11 @@ router.get('/:id', (req, res) => {
 })
 // Create Route
 router.post('/', (req, res) => {
+  console.log('response from server')
   const newUser = req.body
   User.create(newUser)
     .then((user) => {
+      console.log('response from server')
       res.json(user)
     })
     .catch((err) => {
