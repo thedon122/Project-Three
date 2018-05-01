@@ -30,7 +30,7 @@ const userSchema = new Schema({
     event: [eventSchema]
 })
 
-const User = mongoose.model('User', UserSchema)
+const User = mongoose.model('User', userSchema)
 const Event = mongoose.model('User', eventSchema)
 const Activity = mongoose.model('Activity', activitySchema)
 

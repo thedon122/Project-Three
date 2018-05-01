@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import NewUser from 'NewUser'
+import NewUser from './NewUser'
 
 class HomePage extends Component {
     state = {
@@ -19,9 +19,9 @@ class HomePage extends Component {
         return (
             <div>
                 <div class='Button'>
-                    <button onClick ={this.toggleShowNewForm.toggleShowMainImg}>Create New User
+                    <button onClick ={this.toggleShowNewForm}>Create New User
                     </button>
-                    {this.state.showNewForm ?<NewUser/>: null}
+                    {this.state.showNewForm ? <NewUser />: null}
                 </div>
                 
                 <div class='Button'><button>
@@ -29,7 +29,8 @@ class HomePage extends Component {
                 </button>
                 </div>
                 <div class='mainImg'>
-                    <img src='/Users/donovan/GA/Project-Three/images/paximages.jpeg' />
+                    <img src='/Users/donovan/GA/Project-Three/client/build/static/images/paximages.jpeg' />
+                    
                 </div>
             </div>
         )

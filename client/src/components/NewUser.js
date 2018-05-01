@@ -40,11 +40,16 @@ class NewUser extends Component {
                 <div>
                     <label htmlFor="favorite">Favorite: </label>
                     <input onChange={this.handleChange} type="text" name="name" value={this.state.favorite} />
-                    <div>
-                        <label htmlFor="imgUrl">imgUrl: </label>
-                        <input onChange={this.handleChange} type="text" name="name" value={this.state.imgUrl} />
-                    </div>
                 </div>
+                <div>
+                    <label htmlFor="imgUrl">imgUrl: </label>
+                    <input onChange={this.handleChange} type="text" name="name" value={this.state.imgUrl} />
+                </div>
+               
+                    <div>
+                        <button>Submit</button>
+                        </div>
+
             </form>
         )
     }
