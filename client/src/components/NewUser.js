@@ -28,9 +28,10 @@ class NewUser extends React.Component {
     }
 
     handleChange = name => event => {
-        this.setState({
-            [name]: event.target.value,
-        });
+        const name = event.target.name
+        const newState = {...this.state}
+        newState[name] = event.target.value
+        this.setState(newState)
     };
 
     handleSubmit = (event) => {
@@ -55,54 +56,36 @@ class NewUser extends React.Component {
                     required
                     name="lastName"
                     label="Last Name"
-                    value={this.state.name}
+                    
                     className={classes.textField}
-                    onChange={this.handleChange('name')}
+                    onChange={this.handleChange('lastName')}
                     margin="normal"
                 />
-                <div>
-                    <label htmlFor="lastName">Last Name: </label>
-                    <input onChange={this.handleChange} type="text" name="lastName" />
-                </div>
                 <TextField
                     required
                     name="firstName"
                     label="First Name"
-                    value={this.state.name}
+                    
                     className={classes.textField}
-                    onChange={this.handleChange('name')}
+                    onChange={this.handleChange('firstName')}
                     margin="normal"
                 />
-                <div>
-                    <label htmlFor="firstName">First Name: </label>
-                    <input onChange={this.handleChange} type="text" name="firstName" />
-                </div>
                 <TextField
-                
                     name="favorite"
                     label="Favorite"
-                    value={this.state.name}
+                    
                     className={classes.textField}
-                    onChange={this.handleChange('name')}
+                    onChange={this.handleChange('favorite')}
                     margin="normal"
                 />
-                <div>
-                    <label htmlFor="favorite">Favorite: </label>
-                    <input onChange={this.handleChange} type="text" name="favorite" />
-                </div>
-                <TextField
-                
+                <TextField               
                 name="imgUrl"
                 label="imgUrl"
-                value={this.state.name}
+               
                 className={classes.textField}
-                onChange={this.handleChange('name')}
+                onChange={this.handleChange('imgUrl')}
                 margin="normal"
             />
-                <div>
-                    <label htmlFor="imgUrl">imgUrl: </label>
-                    <input onChange={this.handleChange} type="text" name="imgUrl" />
-                </div>
 
                 <div>
                     <button type="submit" value="Submit">Submit</button>

@@ -32,8 +32,10 @@ class ExistingUser extends Component {
     render() {
         const userLinks = this.state.users.map((user, i) => {
             return (
-              <div key={i}>
-                <Link to={`/user/${user._id}`}>{user.lastName}{user.firstName}{user.favorite}</Link>
+              <div>
+                <Link key={i} to={`/user/${user._id}`}>
+                <h3>Name: {user.firstName} {user.lastName}</h3>
+                <h3>Favorites: {user.favorite}</h3></Link>
               </div>)
           })
       

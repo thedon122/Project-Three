@@ -14,8 +14,10 @@ router.get('/', (req, res) => {
 })
 // Show Route
 router.get('/:id', (req, res) => {
+  console.log("sever getting request",req.params.id)
   User.findById(req.params.id)
     .then((user) => {
+      console.log("sever sending info",req.params.id)
       res.json(user)
     })
     .catch((err) => {
