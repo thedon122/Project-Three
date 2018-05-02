@@ -1,7 +1,25 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import PropTypes from 'prop-types';
+import { withStyles } from 'material-ui/styles';
+import MenuItem from 'material-ui/Menu/MenuItem';
+import TextField from 'material-ui/TextField';
 
-class NewUser extends Component {
+const styles = theme => ({
+    container: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    textField: {
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        width: 200,
+    },
+    menu: {
+        width: 200,
+    },
+});
+class NewUser extends React.Component {
     state = {
         lastName: '',
         firstName: '',
@@ -9,12 +27,11 @@ class NewUser extends Component {
         imgUrl: ''
     }
 
-    handleChange = (event) => {
-        const name = event.target.name
-        const newState = { ...this.state }
-        newState[name] = event.target.value
-        this.setState(newState)
-    }
+    handleChange = name => event => {
+        this.setState({
+            [name]: event.target.value,
+        });
+    };
 
     handleSubmit = (event) => {
         event.preventDefault()
@@ -25,31 +42,66 @@ class NewUser extends Component {
             imgUrl: this.state.imgUrl,
         }
         axios.post('/api/users', payload)
-        .then((res) => {
-            console.log("RESPONSE FROM NEW User", res.data)
-        })
+            .then((res) => {
+                console.log("RESPONSE FROM NEW User", res.data)
+            })
     }
     render() {
+        const { classes } = this.props;
         return (
-            <div class="row">
-            <form class="col s12">
-              <div class="row">
-                <div class="input-field col s6">
+
+            <form className={classes.container} noValidate autoComplete="on">
+                <TextField
+                    required
+                    name="lastName"
+                    label="Last Name"
+                    value={this.state.name}
+                    className={classes.textField}
+                    onChange={this.handleChange('name')}
+                    margin="normal"
+                />
+                <div>
                     <label htmlFor="lastName">Last Name: </label>
-                    <input onChange={this.handleChange} type="text" name="lastName"  />
+                    <input onChange={this.handleChange} type="text" name="lastName" />
                 </div>
-                </div>
+                <TextField
+                    required
+                    name="firstName"
+                    label="First Name"
+                    value={this.state.name}
+                    className={classes.textField}
+                    onChange={this.handleChange('name')}
+                    margin="normal"
+                />
                 <div>
                     <label htmlFor="firstName">First Name: </label>
-                    <input onChange={this.handleChange} type="text" name="firstName"  />
+                    <input onChange={this.handleChange} type="text" name="firstName" />
                 </div>
+                <TextField
+                
+                    name="favorite"
+                    label="Favorite"
+                    value={this.state.name}
+                    className={classes.textField}
+                    onChange={this.handleChange('name')}
+                    margin="normal"
+                />
                 <div>
                     <label htmlFor="favorite">Favorite: </label>
-                    <input onChange={this.handleChange} type="text" name="favorite"  />
+                    <input onChange={this.handleChange} type="text" name="favorite" />
                 </div>
+                <TextField
+                
+                name="imgUrl"
+                label="imgUrl"
+                value={this.state.name}
+                className={classes.textField}
+                onChange={this.handleChange('name')}
+                margin="normal"
+            />
                 <div>
                     <label htmlFor="imgUrl">imgUrl: </label>
-                    <input onChange={this.handleChange} type="text" name="imgUrl"  />
+                    <input onChange={this.handleChange} type="text" name="imgUrl" />
                 </div>
 
                 <div>
@@ -57,9 +109,12 @@ class NewUser extends Component {
                 </div>
 
             </form>
-            </div>
+
         )
     }
 }
+NewUser.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
 
-export default NewUser
+export default withStyles(styles)(NewUser)
