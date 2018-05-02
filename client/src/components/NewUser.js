@@ -19,22 +19,25 @@ class NewUser extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         const payload = {
-            lastName: this.state.lasNname,
+            lastName: this.state.lastName,
             firstName: this.state.firstName,
             favorite: this.state.favorite,
             imgUrl: this.state.imgUrl,
         }
-        axios.post('/api/users', {payload})
+        axios.post('/api/users', payload)
         .then((res) => {
             console.log("RESPONSE FROM NEW User", res.data)
         })
     }
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <div>
+            <div class="row">
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s6">
                     <label htmlFor="lastName">Last Name: </label>
                     <input onChange={this.handleChange} type="text" name="lastName"  />
+                </div>
                 </div>
                 <div>
                     <label htmlFor="firstName">First Name: </label>
@@ -54,6 +57,7 @@ class NewUser extends Component {
                 </div>
 
             </form>
+            </div>
         )
     }
 }

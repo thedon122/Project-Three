@@ -24,7 +24,6 @@ router.get('/:id', (req, res) => {
 })
 // Create Route
 router.post('/', (req, res) => {
-  console.log('Hitting POST route from server')
   const newUser = req.body
   User.create(newUser)
     .then((user) => {

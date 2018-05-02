@@ -18,6 +18,17 @@ class HomePage extends Component {
     render() {
         return (
             <div>
+            <nav>
+            <div class="nav-wrapper">
+              <a href="#" class="brand-logo right">Logo</a>
+              <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li><a href="sass.html">Sass</a></li>
+                <li><a href="badges.html">Components</a></li>
+                <li><a href="collapsible.html">JavaScript</a></li>
+              </ul>
+            </div>
+          </nav>
+            
                 <div class='Button'>
                     <button onClick ={this.toggleShowNewForm}>Create New User
                     </button>
@@ -30,7 +41,7 @@ class HomePage extends Component {
                 </div>
                 <div class='mainImg'>
                     <img src='/Users/donovan/GA/Project-Three/client/build/static/images/paximages.jpeg' />
-                    
+
                 </div>
             </div>
         )
