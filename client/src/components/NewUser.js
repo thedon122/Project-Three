@@ -51,7 +51,7 @@ class NewUser extends React.Component {
         const { classes } = this.props;
         return (
 
-            <form className={classes.container} noValidate autoComplete="on">
+            <form onSubmit= {this.handleSubmit} className={classes.container} noValidate autoComplete="on" >
                 <TextField
                     required
                     name="lastName"
@@ -81,7 +81,7 @@ class NewUser extends React.Component {
                 <TextField               
                 name="imgUrl"
                 label="imgUrl"
-               
+                value={this.state.name}
                 className={classes.textField}
                 onChange={this.handleChange('imgUrl')}
                 margin="normal"

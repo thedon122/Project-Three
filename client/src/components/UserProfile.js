@@ -4,8 +4,8 @@ import axios from 'axios'
 
 class UserProfile extends Component {
     state = {
-        user =[],
-        event =[]
+        user: [],
+        event: []
     }
 
     componentDidMount = () => {
@@ -15,52 +15,73 @@ class UserProfile extends Component {
             .then(response => {
                 console.log(response.data)
                 this.setState({
-                    lastName: response.user.lastName,
-                    firstName: response.user.firstName,
-                    favorite: response.user.favorite,
-                    imgUrl: response.user.imgUrl
+                    user: response.data
                 })
             })
     }
+    handleChange = (event) => {
 
+        const user = [...this.state.user]
+            
+            user[event.target.name] = event.target.value
+        this.setState({ user })
+        console.log("this is at end of change", this.state.user)
+    }
+    deleteIdea = (userId) => {
+        axios.delete(`/api/users/${this.state.user._id}`)
+            .then((response) => {
+                console.log(response)
+
+            })
+    }
+    updateUser = (users) => {
+        console.log("UPDATING User In Database")
+        console.log("User Id being Updated", this.state.user._id)
+        var userId = this.state.user._id
+        axios.patch(`/api/users/${userId}`, { users })
+            .then(res => {
+                this.setState({ user: res.data })
+            })
+    }
     render() {
         console.log("RENDERING", this.state.user)
-        userIdividual = () => {
+        const userIdividual = () => {
+            return (
+                <form>
+                    <input
+                        type="text"
+                        name="firstName"
+                        value={this.state.user.firstName}
+                        onBlur={() => this.updateUser(this.state.user)}
+                        onChange={this.handleChange} />
 
-            <form>
-                <input
-                    type="text"
-                    name="firstName"
-                    value={this.state.firstName}
-                    onBlur={() => this.updateUser(idea)}
-                    onChange={(event) => this.handleChange(idea, event)} />
+                    <textarea
+                        name="lastName"
+                        value={this.state.user.lastName}
+                        onBlur={() => this.updateUser(this.state.user)}
+                        onChange={this.handleChange} />
 
-                <textarea
-                    name="lastName"
-                    value={this.state.lastName}
-                    onBlur={() => this.updateUser(idea)}
-                    onChange={(event) => this.handleChange(idea, event)} />
+                    <textarea
+                        name="favorite"
+                        value={this.state.user.favorite}
+                        onBlur={() => this.updateUser(this.state.user)}
+                        onChange={this.handleChange} />
 
-                <textarea
-                    name="favorite"
-                    value={this.state.favorite}
-                    onBlur={() => this.updateUser(idea)}
-                    onChange={(event) => this.handleChange(idea, event)} />
-
-                <textarea
-                    name="imgUrl"
-                    value={this.state.imgUrl}
-                    onBlur={() => this.updateUser(idea)}
-                    onChange={(event) => this.handleChange(idea, event)} />
-                <button
-                    onClick={() => { this.deleteIdea(idea._id) }}>
-                    Delete Idea
+                    <textarea
+                        name="imgUrl"
+                        value={this.state.user.imgUrl}
+                        // onBlur={() => this.updateUser(this.state.user)}
+                        onChange={this.handleChange} />
+                    <button
+                        onClick={() => { this.deleteIdea(this.state.user._id) }}>
+                        Delete Idea
           </button>
-            </form>
+                </form>
+            )
         }
         return (
             <div>
-
+                {userIdividual()}
             </div >
         )
     }
