@@ -1,6 +1,14 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import { withStyles } from 'material-ui/styles';
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+import Button from 'material-ui/Button';
+import Paper from 'material-ui/Paper';
+import Grid from 'material-ui/Grid';
+import Footer from './Layouts/Footer'
 import NewUser from './NewUser'
 
 class HomePage extends Component {
@@ -15,26 +23,46 @@ class HomePage extends Component {
     toggleShowMainImg = () => {
         this.setState({ showMainImg: !this.state.showMainImg })
     }
+    const styles = theme => ({
+        root: {
+          flexGrow: 1,
+        },
+        paper: {
+          padding: theme.spacing.unit * 2,
+          textAlign: 'center',
+          color: theme.palette.text.secondary,
+        },
+      });
     render() {
+        const styles = {
+            root: {
+                flexGrow: 1,
+            },
+            flex: {
+                flex: 1,
+            },
+            menuButton: {
+                marginLeft: -12,
+                marginRight: 20,
+            },
+        };
         return (
             <div>
-            <nav>
-            <div class="nav-wrapper">
-              <a href="#" class="brand-logo right">Logo</a>
-              <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="sass.html">Sass</a></li>
-                <li><a href="badges.html">Components</a></li>
-                <li><a href="collapsible.html">JavaScript</a></li>
-              </ul>
-            </div>
-          </nav>
-            
+                <AppBar position="static">
+                    <Toolbar>
+                        <Typography variant="headline" color="inherit">
+                            Title
+                    </Typography>
+                        <Button color="inherit">Login</Button>
+                    </Toolbar>
+                </AppBar>
+
                 <div class='Button'>
-                    <button onClick ={this.toggleShowNewForm}>Create New User
+                    <button onClick={this.toggleShowNewForm}>Create New User
                     </button>
-                    {this.state.showNewForm ? <NewUser />: null}
+                    {this.state.showNewForm ? <NewUser /> : null}
                 </div>
-                
+
                 <div class='Button'><button>
                     <Link to='/existing'>Existing User</Link>
                 </button>
@@ -43,6 +71,7 @@ class HomePage extends Component {
                     <img src='/Users/donovan/GA/Project-Three/client/build/static/images/paximages.jpeg' />
 
                 </div>
+                <Footer/>
             </div>
         )
     }

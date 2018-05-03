@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import { withStyles } from 'material-ui/styles';
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+import Button from 'material-ui/Button';
 
 class UserProfile extends Component {
     state = {
@@ -64,6 +69,7 @@ class UserProfile extends Component {
         console.log("RENDERING", this.state.user)
         const userIdividual = () => {
             return (
+
                 <form>
                     <input
                         type="text"
@@ -98,14 +104,23 @@ class UserProfile extends Component {
         }
         const eventLinks = this.state.events.map((event, i) => {
             return (
-              <div>
-                <Link key={i} to={`/event/${event._id}`}>
-                <h3>Name: {event.name}</h3>
-                <h3>Type: {event.type}</h3></Link>
-              </div>)
-          })
+
+                <div>
+                    <Link key={i} to={`/event/${event._id}`}>
+                        <h3>Name: {event.name}</h3>
+                        <h3>Type: {event.type}</h3></Link>
+                </div>)
+        })
         return (
             <div>
+                <AppBar position="static">
+                    <Toolbar>
+                        <Typography variant="headline" color="inherit">
+                            Title
+                    </Typography>
+                        <Button color="inherit">Login</Button>
+                    </Toolbar>
+                </AppBar>
                 {userIdividual()}
                 {eventLinks}
             </div >

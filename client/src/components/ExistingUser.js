@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+import Button from 'material-ui/Button';
 import NewUser from './NewUser'
-import { Button, Icon } from 'react-materialize'
 
 class ExistingUser extends Component {
     state = {
@@ -34,6 +37,7 @@ class ExistingUser extends Component {
     render() {
         const userLinks = this.state.users.map((user, i) => {
             return (
+
                 <div>
                     <Link key={i} to={`/user/${user._id}`}>
                         <h3>Name: {user.firstName} {user.lastName}</h3>
@@ -42,12 +46,21 @@ class ExistingUser extends Component {
         })
 
         return (
+
             <div>
-                    <Button waves='light' onClick={this.toggleShowNewForm}>
-                        Create New User
+                <AppBar position="static">
+                    <Toolbar>
+                        <Typography variant="headline" color="inherit">
+                            Title
+                    </Typography>
+                        <Button color="inherit">Login</Button>
+                    </Toolbar>
+                </AppBar>
+                <Button waves='light' onClick={this.toggleShowNewForm}>
+                    Create New User
                     </Button>
 
-                    {this.state.showNewForm ? <NewUser /> : null}
+                {this.state.showNewForm ? <NewUser /> : null}
                 {userLinks}
             </div>
         )
