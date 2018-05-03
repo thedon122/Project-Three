@@ -5,32 +5,35 @@ import axios from 'axios'
 class UserProfile extends Component {
     state = {
         user: [],
-        event: []
+        events: []
     }
 
     componentDidMount = () => {
-        const userId = this.props.match.params.userId
-        console.log("UserId from UserProfile component: ", userId)
+        
         this.getIdividualUser()
         this.getAllEvent()
     }
-    getAllEvent = () => {
-        axios.get('/api/users/${userId}/event')
-            .then(res => {
-                console.log("Saving all events to state", res.data)
-                this.setState({ users: res.data })
-            })
-            .catch(err => {
-                console.error(err)
-            })
-    }
     getIdividualUser = () => {
+        const userId = this.props.match.params.userId
+        console.log("eventId from UserProfile component: ", userId)
         axios.get(`/api/users/${userId}`)
             .then(response => {
-                console.log(response.data)
+                console.log("Saving user to state",response.data)
                 this.setState({
                     user: response.data
                 })
+            })
+    }
+    getAllEvent = () => {
+        const userId = this.props.match.params.userId
+        console.log("UserId from UserProfile component: ", userId)
+        axios.get(`/api/users/${userId}/event`)
+            .then(res => {
+                console.log("Saving all events to state", res.data)
+                this.setState({ events: res.data })
+            })
+            .catch(err => {
+                console.error(err)
             })
     }
     handleChange = (event) => {
@@ -41,7 +44,7 @@ class UserProfile extends Component {
         this.setState({ user })
         console.log("this is at end of change", this.state.user)
     }
-    deleteIdea = (userId) => {
+    deleteUser = (userId) => {
         axios.delete(`/api/users/${this.state.user._id}`)
             .then((response) => {
                 console.log(response)
@@ -87,15 +90,24 @@ class UserProfile extends Component {
                         // onBlur={() => this.updateUser(this.state.user)}
                         onChange={this.handleChange} />
                     <button
-                        onClick={() => { this.deleteIdea(this.state.user._id) }}>
-                        Delete Idea
+                        onClick={() => { this.deleteUser(this.state.user._id) }}>
+                        Delete User
           </button>
                 </form>
             )
         }
+        const eventLinks = this.state.events.map((event, i) => {
+            return (
+              <div>
+                <Link key={i} to={`/event/${event._id}`}>
+                <h3>Name: {event.name}</h3>
+                <h3>Type: {event.type}</h3></Link>
+              </div>)
+          })
         return (
             <div>
                 {userIdividual()}
+                {eventLinks}
             </div >
         )
     }

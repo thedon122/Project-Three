@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import NewUser from './NewUser'
+import { Button, Icon } from 'react-materialize'
 
 class ExistingUser extends Component {
-    state = {users: [],
+    state = {
+        users: [],
         user: {
             lastName: '',
             firstName: '',
@@ -15,38 +17,40 @@ class ExistingUser extends Component {
     toggleShowNewForm = () => {
         this.setState({ showNewForm: !this.state.showNewForm })
     }
-    componentDidMount (){
+    componentDidMount() {
         this.getAllUser()
     }
 
     getAllUser = () => {
         axios.get('/api/users')
-        .then(res => {
-          console.log("Saving users to state", res.data)
-          this.setState({ users: res.data })
-        })
-        .catch(err => {
-          console.error(err)
-        })
+            .then(res => {
+                console.log("Saving users to state", res.data)
+                this.setState({ users: res.data })
+            })
+            .catch(err => {
+                console.error(err)
+            })
     }
     render() {
         const userLinks = this.state.users.map((user, i) => {
             return (
-              <div>
-                <Link key={i} to={`/user/${user._id}`}>
-                <h3>Name: {user.firstName} {user.lastName}</h3>
-                <h3>Favorites: {user.favorite}</h3></Link>
-              </div>)
-          })
-      
+                <div>
+                    <Link key={i} to={`/user/${user._id}`}>
+                        <h3>Name: {user.firstName} {user.lastName}</h3>
+                        <h3>Favorites: {user.favorite}</h3></Link>
+                </div>)
+        })
+
         return (
             <div>
-                <div class='Button'>
-                    <button onClick ={this.toggleShowNewForm}>Create New User
-                    </button>
-                    {this.state.showNewForm ? <NewUser />: null}
-                </div>
-        {userLinks}
+                
+                    <Button waves='light' onClick={this.toggleShowNewForm}>
+                        Create New User
+                    </Button>
+
+                    {this.state.showNewForm ? <NewUser /> : null}
+                
+                {userLinks}
             </div>
         )
     }

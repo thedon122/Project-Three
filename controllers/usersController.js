@@ -2,8 +2,8 @@ const express = require('express')
 const router = express.Router()
 const User = require('../models/user.js')
 
+// Index Route
 router.get('/', (req, res) => {
-  // Index Route
   User.find()
     .then(user => {
       res.json(user)
