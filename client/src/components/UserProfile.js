@@ -9,7 +9,7 @@ class UserProfile extends Component {
     }
 
     componentDidMount = () => {
-        
+
         this.getIdividualUser()
         this.getAllEvent()
     }
@@ -18,7 +18,7 @@ class UserProfile extends Component {
         console.log("eventId from UserProfile component: ", userId)
         axios.get(`/api/users/${userId}`)
             .then(response => {
-                console.log("Saving user to state",response.data)
+                console.log("Saving user to state", response.data)
                 this.setState({
                     user: response.data
                 })
@@ -92,22 +92,22 @@ class UserProfile extends Component {
                     <button
                         onClick={() => { this.deleteUser(this.state.user._id) }}>
                         Delete User
-          </button>
+                    </button>
                 </form>
             )
         }
-        const eventLinks = this.state.events.map((event, i) => {
-            return (
-              <div>
-                <Link key={i} to={`/event/${event._id}`}>
-                <h3>Name: {event.name}</h3>
-                <h3>Type: {event.type}</h3></Link>
-              </div>)
-          })
+        // const eventLinks = this.state.events.map((event, i) => {
+        //     return (
+        //       <div>
+        //         <Link key={i} to={`/event/${event._id}`}>
+        //         <h3>Name: {event.name}</h3>
+        //         <h3>Type: {event.type}</h3></Link>
+        //       </div>)
+        //   })
         return (
             <div>
                 {userIdividual()}
-                {eventLinks}
+                {/* {eventLinks} */}
             </div >
         )
     }

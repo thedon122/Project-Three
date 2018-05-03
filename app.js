@@ -26,17 +26,15 @@ const userRoutes = require('./controllers/usersController')
 app.use('/api/users', userRoutes)
 
 const eventRoutes = require('./controllers/eventsController')
-app.use('/api/users/:usersId/events', eventRoutes)
+app.use('/api/users/:userId/event', eventRoutes)
 
-// const activityRoutes = require('./controllers/activitiesController')
-// app.use('/api/users/:usersId/events/:eventsId/activities', activityRoutes)
+const activityRoutes = require('./controllers/activitiesController')
+app.use('/api/users/:userId/events/:eventId/activities', activityRoutes)
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/client/build/index.html')
 })
-app.get('/*', (req, res) => {
-  res.sendFile(`${__dirname}/client/build/index.html`)
-})
+
 const PORT = process.env.PORT || 3001
 
 app.listen(PORT, () => {

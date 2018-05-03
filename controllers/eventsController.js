@@ -1,12 +1,15 @@
 const express = require('express')
 const router = express.Router({ mergeParams: true })
-
+const User = require('../models/user.js')
+const Event = require('../models/event.js')
 
 // Index Route
 router.get('/', (req, res) => {
-    User.find(req.params.userId)
+    console.log("GETTING ALL EVENTS by userId:", req.params)
+    User.findById(req.params.userId)
     .then(user => {
-        res.json(user)
+        console.log("User Found: ", user)
+        res.json(user.event)
       })
       .catch((err) => {
         console.log(err)

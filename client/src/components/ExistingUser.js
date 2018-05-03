@@ -43,13 +43,11 @@ class ExistingUser extends Component {
 
         return (
             <div>
-                
                     <Button waves='light' onClick={this.toggleShowNewForm}>
                         Create New User
                     </Button>
 
                     {this.state.showNewForm ? <NewUser /> : null}
-                
                 {userLinks}
             </div>
         )
