@@ -96,18 +96,18 @@ class UserProfile extends Component {
                 </form>
             )
         }
-        // const eventLinks = this.state.events.map((event, i) => {
-        //     return (
-        //       <div>
-        //         <Link key={i} to={`/event/${event._id}`}>
-        //         <h3>Name: {event.name}</h3>
-        //         <h3>Type: {event.type}</h3></Link>
-        //       </div>)
-        //   })
+        const eventLinks = this.state.events.map((event, i) => {
+            return (
+              <div>
+                <Link key={i} to={`/event/${event._id}`}>
+                <h3>Name: {event.name}</h3>
+                <h3>Type: {event.type}</h3></Link>
+              </div>)
+          })
         return (
             <div>
                 {userIdividual()}
-                {/* {eventLinks} */}
+                {eventLinks}
             </div >
         )
     }

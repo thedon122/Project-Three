@@ -15,6 +15,18 @@ router.get('/', (req, res) => {
         console.log(err)
       })
   })
-
+// Create Route
+router.post('/', (req, res) => {
+  const newUser = req.body
+  console.log("GETTING ALL EVENTS by userId:", newUser)
+  User.create(newUser)
+    .then((user) => {
+      console.log('response from server')
+      res.json(user.event)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+})
   module.exports = router
   

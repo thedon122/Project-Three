@@ -28,8 +28,8 @@ app.use('/api/users', userRoutes)
 const eventRoutes = require('./controllers/eventsController')
 app.use('/api/users/:userId/event', eventRoutes)
 
-const activityRoutes = require('./controllers/activitiesController')
-app.use('/api/users/:userId/events/:eventId/activities', activityRoutes)
+// const activityRoutes = require('./controllers/activitiesController')
+// app.use('/api/users/:userId/events/:eventId/activities', activityRoutes)
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/client/build/index.html')
