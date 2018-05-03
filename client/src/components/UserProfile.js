@@ -11,6 +11,20 @@ class UserProfile extends Component {
     componentDidMount = () => {
         const userId = this.props.match.params.userId
         console.log("UserId from UserProfile component: ", userId)
+        this.getIdividualUser()
+        this.getAllEvent()
+    }
+    getAllEvent = () => {
+        axios.get('/api/users/${userId}/event')
+            .then(res => {
+                console.log("Saving all events to state", res.data)
+                this.setState({ users: res.data })
+            })
+            .catch(err => {
+                console.error(err)
+            })
+    }
+    getIdividualUser = () => {
         axios.get(`/api/users/${userId}`)
             .then(response => {
                 console.log(response.data)
@@ -22,8 +36,8 @@ class UserProfile extends Component {
     handleChange = (event) => {
 
         const user = [...this.state.user]
-            
-            user[event.target.name] = event.target.value
+
+        user[event.target.name] = event.target.value
         this.setState({ user })
         console.log("this is at end of change", this.state.user)
     }

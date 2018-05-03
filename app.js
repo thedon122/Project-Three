@@ -24,6 +24,10 @@ app.use(express.static(`${__dirname}/client/build`))
 
 const userRoutes = require('./controllers/usersController')
 app.use('/api/users', userRoutes)
+const eventRoutes = require('./controllers/eventsController')
+app.use('/api/users/:usersId/events', eventRoutes)
+const activityRoutes = require('./controllers/activitiesController')
+app.use('/api/users/:usersId/events/:eventsId/activities', eventRoutes)
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/client/build/index.html')
