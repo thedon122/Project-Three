@@ -81,19 +81,17 @@ class UserProfile extends Component {
                 console.error(err)
             })
     }
-    handleChange = (event) => {
-
-        const user = [...this.state.user]
-
-        user[event.target.name] = event.target.value
-        this.setState({ user })
-        console.log("this is at end of change", this.state.user)
-    }
+    handleChange = event => {
+        const name = event.target.name
+        const newState = { ...this.state }
+        newState.user[name] = event.target.value
+        this.setState(newState)
+    };
     deleteUser = (userId) => {
         axios.delete(`/api/users/${this.state.user._id}`)
             .then((response) => {
                 console.log(response)
-
+                this.props.history.goBack()
             })
     }
     updateUser = (users) => {
@@ -113,38 +111,39 @@ class UserProfile extends Component {
 
                 <form className={classes.container} noValidate autoComplete="on" >
                     <TextField
-                    required
                     name="lastName"
                     label="Last Name"
-                    
                     className={classes.textField}
-                    onChange={this.handleChange('lastName')}
+                    value={this.state.user.firstName}
+                    onChange={this.handleChange}
                     margin="normal"
                 />
-                    <input
-                        type="text"
-                        name="firstName"
-                        value={this.state.user.firstName}
-                        onBlur={() => this.updateUser(this.state.user)}
-                        onChange={this.handleChange} />
-
-                    <textarea
-                        name="lastName"
-                        value={this.state.user.lastName}
-                        onBlur={() => this.updateUser(this.state.user)}
-                        onChange={this.handleChange} />
-
-                    <textarea
-                        name="favorite"
-                        value={this.state.user.favorite}
-                        onBlur={() => this.updateUser(this.state.user)}
-                        onChange={this.handleChange} />
-
-                    <textarea
-                        name="imgUrl"
-                        value={this.state.user.imgUrl}
-                        // onBlur={() => this.updateUser(this.state.user)}
-                        onChange={this.handleChange} />
+               <TextField
+                    required
+                    name="firstName"
+                    label="First Name"
+                    className={classes.textField}
+                    value={this.state.user.lastName}
+                    onChange={this.handleChange}
+                    margin="normal"
+                />
+                <TextField
+                    name="favorite"
+                    label="Favorite"
+                    className={classes.textField}
+                    value={this.state.user.favorite}
+                    onChange={this.handleChange}
+                    margin="normal"
+                />
+                <TextField
+                    name="imgUrl"
+                    label="imgUrl"
+                    value={this.state.name}
+                    className={classes.textField}
+                    value={this.state.user.imgUrl}
+                    onChange={this.handleChange}
+                    margin="normal"
+                />
                     <button
                         onClick={() => { this.deleteUser(this.state.user._id) }}>
                         Delete User
@@ -165,10 +164,12 @@ class UserProfile extends Component {
             <div>
                 <AppBar position="static">
                     <Toolbar>
-                        <Typography variant="headline" color="inherit">
-                            Title
-                    </Typography>
-                        <Button color="inherit">Login</Button>
+                        <Typography variant="headline" color="white">
+                            <Button size="large" waves='light'>
+                                <Link to='/'>HomePage</Link>
+                            </Button>
+                        </Typography>
+
                     </Toolbar>
                 </AppBar>
                 {userIdividual()}

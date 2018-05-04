@@ -29,7 +29,7 @@ class NewUser extends React.Component {
 
     handleChange = name => event => {
         const name = event.target.name
-        const newState = {...this.state}
+        const newState = { ...this.state }
         newState[name] = event.target.value
         this.setState(newState)
     };
@@ -51,12 +51,11 @@ class NewUser extends React.Component {
         const { classes } = this.props;
         return (
 
-            <form onSubmit= {this.handleSubmit} className={classes.container} noValidate autoComplete="on" >
+            <form onSubmit={this.handleSubmit} className={classes.container} noValidate autoComplete="on" >
                 <TextField
                     required
                     name="lastName"
                     label="Last Name"
-                    
                     className={classes.textField}
                     onChange={this.handleChange('lastName')}
                     margin="normal"
@@ -65,7 +64,6 @@ class NewUser extends React.Component {
                     required
                     name="firstName"
                     label="First Name"
-                    
                     className={classes.textField}
                     onChange={this.handleChange('firstName')}
                     margin="normal"
@@ -73,19 +71,18 @@ class NewUser extends React.Component {
                 <TextField
                     name="favorite"
                     label="Favorite"
-                    
                     className={classes.textField}
                     onChange={this.handleChange('favorite')}
                     margin="normal"
                 />
-                <TextField               
-                name="imgUrl"
-                label="imgUrl"
-                value={this.state.name}
-                className={classes.textField}
-                onChange={this.handleChange('imgUrl')}
-                margin="normal"
-            />
+                <TextField
+                    name="imgUrl"
+                    label="imgUrl"
+                    value={this.state.name}
+                    className={classes.textField}
+                    onChange={this.handleChange('imgUrl')}
+                    margin="normal"
+                />
 
                 <div>
                     <button type="submit" value="Submit">Submit</button>
