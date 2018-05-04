@@ -1,11 +1,14 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
+import MenuItem from 'material-ui/Menu/MenuItem';
+import TextField from 'material-ui/TextField';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
+import Footer from './Layouts/Footer';
 
 class UserProfile extends Component {
     state = {
@@ -70,7 +73,16 @@ class UserProfile extends Component {
         const userIdividual = () => {
             return (
 
-                <form>
+                <form className={classes.container} noValidate autoComplete="on" >
+                    <TextField
+                    required
+                    name="lastName"
+                    label="Last Name"
+                    
+                    className={classes.textField}
+                    onChange={this.handleChange('lastName')}
+                    margin="normal"
+                />
                     <input
                         type="text"
                         name="firstName"
@@ -123,6 +135,7 @@ class UserProfile extends Component {
                 </AppBar>
                 {userIdividual()}
                 {eventLinks}
+                <Footer />
             </div >
         )
     }

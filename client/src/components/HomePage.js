@@ -7,6 +7,7 @@ import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import PropTypes from 'prop-types';
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
+import Hidden from 'material-ui/Hidden';
 import Button from 'material-ui/Button';
 import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid';
@@ -39,7 +40,7 @@ const styles = theme => ({
         marginBottom: 12,
     },
     media: {
-        height: 50,
+        height: 100,
         paddingTop: '30.25%', // 16:9
     },
     mainImg: {
@@ -88,6 +89,7 @@ class HomePage extends Component {
                                 </Typography>
                             </CardContent>
                         </Card>
+                        <Hidden smDown>
                         <Card className={classes.card} >
                             <CardMedia
                                 className={classes.media}
@@ -95,14 +97,7 @@ class HomePage extends Component {
                                 title="Contemplative Reptile"
                             />
                         </Card>
-                        <Card >
-                            <CardMedia
-
-                                image="http://conceptionsportsmanagement.com/wp-content/uploads/2014/08/bncc1.gif"
-                                title="Contemplative Reptile"
-                            />
-                        </Card>
-
+                        </Hidden>
                     </Grid>
                     <Grid item lg={8} md={6} sm={12} xs={12}>
                         <Paper>
@@ -129,6 +124,15 @@ class HomePage extends Component {
                                 </Typography>
                             </CardContent>
                         </Card>
+                        <Hidden smDown>
+                        <Card className={classes.card} >
+                            <CardMedia
+                                className={classes.media}
+                                image="http://conceptionsportsmanagement.com/wp-content/uploads/2014/08/bncc1.gif"
+                                title="Contemplative Reptile"
+                            />
+                        </Card>
+                        </Hidden>
                     </Grid>
                 </Grid>
 
